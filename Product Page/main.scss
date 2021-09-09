@@ -1,0 +1,220 @@
+$titleFont: 'Roboto', sans-serif;   // variable oluşturuldu.
+
+$colors: (                      // map-get metodu oluşturuldu.
+    "colorWhite": #ffff, 
+    "lightGrey": #dcdcdc, 
+    "colorBlue": blue
+);
+
+@mixin size($w, $h) {
+    width: $w;
+    height: $h;
+}
+
+@mixin button($color, $back) {
+    color: $color;
+    background-color: $back;
+}
+
+@mixin border($style, $radius, $width) {    // mixin oluşturuldu.
+    border-style: $style;
+    border-radius: $radius;
+    border-width: $width;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-color: map-get($colors, "lightGrey");
+    @media(max-width: 980px){
+        height: 100%;
+    }
+    .container{
+        background-color: map-get($colors, "colorWhite");
+        width: 70%;
+        height: 100vh;
+        margin: auto;
+        @media(max-width: 980px){
+            height: 100%;
+        }
+        .row{
+            width: 90%;
+            height: 100%;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            @media(max-width: 980px){
+                display: block;
+            }
+            .photos{
+                flex-basis: 50%;
+                @media(max-width: 980px){
+                    position: relative;
+                    top: 3vh;
+                }
+                @media(max-width: 767px){
+                    position: relative;
+                    top: 3vh;
+                }
+                .slider{  
+                    height: 100%;
+                    display: block;
+                    .bigPhoto{
+                        border: 1px solid lightgrey;
+                        width: 45vh;
+                        margin-right: 50px;
+                        @media(max-width: 980px){
+                            width: 100%;                    
+                            height: 300px;
+                            display: flex;
+                            justify-content: center;
+                        }
+                        img{
+                            cursor: pointer;
+                            @include size(100%, 100%);
+                            @media(max-width: 980px){
+                                width: 200px;                    
+                                height: 300px;
+                            }
+                         }
+                    }
+                    .smallPhotos{
+                        @media(max-width: 767px){
+                            display: none;
+                        }
+                        ul{
+                            @media(max-width: 980px){
+                                position: relative;
+                                top: 5%;
+                            }
+                            display: flex;
+                            justify-content: flex-start;
+                            li{
+                                list-style-type: none;
+                                img{
+                                    height: 15vh;
+                                    margin-right: 5%;
+                                    cursor: pointer;
+                                    border: 1px solid lightgray;
+                                    @media(max-width: 980px){
+                                        width: 80px ;                    
+                                        height: 120px;
+                                        border-top: 0;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .title-price-desc-add{
+                height: 80vh;
+                display: block;
+                .title{ 
+                    margin-top: 7%;
+                    @media(max-width: 980px){
+                        margin-top: 7%;
+                    }
+                    @media(max-width:767px){
+                        margin-top: 13%;
+                    }
+                    h2{
+                        font-size: 27px;
+                        font-weight: 600;
+                        font-family: $titleFont;
+                        position: relative;
+                        @media(max-width: 980px){
+                            font-size: 20px;
+                        }
+                        @media(max-width:767px){
+                            font-size: 23px;
+                        }
+                    }
+                }
+                .price{
+                    margin-top: 25%;
+                    @media(max-width: 980px){
+                        margin-top: 4%;
+                    }
+                    @media(max-width: 767px){
+                        margin-top: 10%;
+                    }
+                    span{
+                        position: relative;
+                        font-size: 35px;
+                        font-weight: 700;
+                        font-family: $titleFont;
+                    }
+                }
+                .desc{
+                    margin-top: 15%;
+                    padding-bottom: 10%;
+                    width: 90%;
+                    //@include size(90%, 15%);  // HEIGHT DEĞERİ BELİRTSEYDİK EKRAN KÜÇÜLDÜKÇE METİN DIŞARI TAŞARDI.
+                    padding: 5%;
+                    background-color: whitesmoke;
+                    border-radius: 5px;
+                    @media(max-width: 980px){
+                        font-size: 0.9em;
+                        margin-top: 3%;
+                        padding: 3%;
+                    }
+                    @media(max-width: 767px){
+                        margin-top: 8%;
+                        font-size: 1em;
+                    }
+                    p{
+                        position: relative;
+                        font-size: 1.15em;
+                        text-align-last: center;
+                        
+                    }
+                }
+                .add{
+                    margin-top: 10%;
+                    margin-left: 7%;
+                    @media(max-width: 980px){
+                        margin-top: 2%;
+                    }
+                    @media(max-width: 767px){
+                        margin-top: 4%;
+                        display: flex;
+                        justify-content: center;
+                    }
+                    form{
+                        button{
+                            cursor: pointer;
+                            outline: none;
+                            position: relative;
+                            font-family: $titleFont;
+                            font-size: 17px;
+                            text-align: center;
+                            float: right;
+                            @include size(15em, 2.5em);
+                            @include button(map-get($colors, "colorBlue"), map-get($colors, "colorWhite"));
+                            /*color: map-get($colors, "colorBlue");
+                            background-color: map-get($colors, "colorWhite");*/
+                            border: 0.01rem solid lightgray;
+                            border-radius: 8px;
+                            @media(max-width: 980px){
+                                position: relative;
+                                right:  3vw;
+                            }
+                            &:hover{
+                                @include button(map-get($colors, "colorWhite"), map-get($colors, "colorBlue"));
+                                /*color: map-get($colors, "colorWhite");
+                                background-color: map-get($colors, "colorBlue");*/
+                                transition: 0.3s ease;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+            
+    }
+}
