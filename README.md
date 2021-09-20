@@ -1,2 +1,2 @@
 # E-Commerce-Product-Page
- Product Page with HTML/SASS
+ Product page design using HTML/SASS
